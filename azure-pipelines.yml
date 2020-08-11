@@ -37,28 +37,13 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-  
-- task: DotNetCoreInstaller@0
-  displayName: 'Use .NET Core sdk 2.1.403'
-  inputs:
-    version: 2.1.403
-
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
   inputs:
-    command: restore
-    projects: '$(Parameters.projects)'
-
+    command: 'restore'
+    projects: '''$(Parameters.projects)'''
+    feedsToUse: 'select'
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
   inputs:
-    projects: '$(Parameters.projects)'
-    workingDirectory: apis/poi/web
-
-- task: DotNetCoreCLI@2
-  displayName: 'Run Unit tests'
-  inputs:
-    command: test
-    projects: apis/poi/tests/UnitTests
-    workingDirectory: apis/poi/tests/UnitTests
-
+    command: 'test'
+    projects: 'apis/poi/tests/UnitTests'
+    testRunTitle: 'Run Unit tests'
