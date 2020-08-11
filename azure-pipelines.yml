@@ -37,7 +37,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-steps:
 - task: DotNetCoreInstaller@0
   displayName: 'Use .NET Core sdk 2.1.403'
   inputs:
