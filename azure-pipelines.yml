@@ -37,12 +37,10 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
     version: '2.1.403'
-
 - task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
